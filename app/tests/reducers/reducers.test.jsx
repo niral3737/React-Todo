@@ -42,6 +42,27 @@ describe('Reducers', () => {
       expect(res[0].text).toEqual(action.text);
     });
 
+    it('should add existing todos', () => {
+      var todos= [
+        {
+          id : 1,
+          text : 'any',
+          completed : false,
+          completedAt : undefined,
+          createdAt : 123
+        }
+      ];
+      var action = {
+        type : 'ADD_TODOS',
+        todos : todos
+      };
+
+      var res = reducers.todosReducer(deepFreeze([]), deepFreeze(action));
+
+      expect(res.length).toBe(1);
+      expect(res[0]).toEqual(todos[0]);
+    });
+
     it('should toggle todo', () => {
       var todos = [
         {

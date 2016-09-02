@@ -8,19 +8,7 @@ import TodoSearch from 'TodoSearch';
 var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
-  getInitialState : function () {
-    return {
-      todos : TodoAPI.getTodos(),
-      showCompleted : false,
-      searchText : ''
-    };
-  },
-  componentDidUpdate : function () {
-    TodoAPI.setTodos(this.state.todos);
-  },
   render: function() {
-    var {todos, showCompleted, searchText} = this.state;
-    var filterTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
       <div>
         <h1 className="page-title">Todo App</h1>
