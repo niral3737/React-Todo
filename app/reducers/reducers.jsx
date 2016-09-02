@@ -41,12 +41,8 @@ export var todosReducer = (state = [], action) => {
             completed : !todo.completed,
             completedAt : !todo.completed ? moment().unix() : undefined
           };
-          // todo.completed : !todo.completed;
-          // if(todo.completed){
-          //   todo.completedAt = moment().unix();
-          // }else{
-          //   todo.completedAt = undefined;
-          // }
+        }else {
+          return todo;
         }
       });
     default:
