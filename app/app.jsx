@@ -13,7 +13,7 @@ store.subscribe(() => {
 });
 
 store.dispatch(actions.addTodo('Runn'));
-store.dispatch(actions.setSearchText('Ru'));
+store.dispatch(actions.setSearchText(''));
 store.dispatch(actions.toggleShowCompleted());
 
 //load foundation
