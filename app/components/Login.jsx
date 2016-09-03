@@ -9,7 +9,15 @@ export var Login = React.createClass({
 
     dispatch(actions.startLogin());
   },
+  onLoginWithGoogle(){
+    var {dispatch} = this.props;
+
+    dispatch(actions.startLoginGoogle());
+  },
   render(){
+    var buttonStyle = {
+      background : '#d50f25'
+    };
     return (
       <div>
         <h1 className="page-title">Todo App</h1>
@@ -20,7 +28,12 @@ export var Login = React.createClass({
               <p>
                 Login with Github account below.
               </p>
-              <button className="button" onClick={this.onLogin}>Login With Github</button>
+              <div>
+                <button className="button" onClick={this.onLogin}>Login With Github</button>
+              </div>
+              <div>
+                <button className="button" style={buttonStyle} onClick={this.onLoginWithGoogle}>Login With Google</button>
+              </div>
             </div>
           </div>
         </div>
