@@ -10,7 +10,6 @@ var TodoAPI = require('TodoAPI');
 
 store.dispatch(actions.startAddTodos());
 
-//load foundation
 $(document).foundation();
 
 //app css
