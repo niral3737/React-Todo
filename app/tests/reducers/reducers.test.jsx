@@ -70,7 +70,7 @@ describe('Reducers', () => {
       expect(res[0]).toEqual(todos[0]);
     });
 
-    it('should toggle todo', () => {
+    it('should update todo', () => {
       var todos = [
         {
           id : 1,
@@ -81,15 +81,23 @@ describe('Reducers', () => {
         }
       ];
 
+      var updates = {
+        completed : false,
+        completedAt : null
+      };
+
+
       var action = {
-        type : 'TOGGLE_TODO',
-        id : 1
+        type : 'UPDATE_TODO',
+        id : todos[0].id,
+        updates
       };
 
       var res = reducers.todosReducer(deepFreeze(todos), deepFreeze(action));
 
-      expect(res[0].completed).toBe(false);
-      expect(res[0].completedAt).toNotExist();
+      expect(res[0].completed).toBe(updates.completed);
+      expect(res[0].completedAt).toBe(updates.completedAt);
+      expect(res[0].text).toEqual(todos[0].text);
     });
   });
 });

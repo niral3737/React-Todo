@@ -1,6 +1,7 @@
 var expect = require('expect');
 import configureMockStore  from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import firebase, {firebaseRef} from 'app/firebase';
 
 var actions = require('actions');
 
@@ -81,14 +82,39 @@ describe('actions', () => {
     expect(response).toEqual(action);
   });
 
-  it('should generate toggle todo action', () => {
+  it('should generate update todo action', () => {
     var action = {
-      type : 'TOGGLE_TODO',
-      id : 1
+      type : 'UPDATE_TODO',
+      id : 1,
+      updates : {
+        completed : false
+      }
     };
-
-    var response = actions.toggleTodo(action.id);
-
+    var response = actions.updateTodo(action.id, action.updates);
     expect(response).toEqual(action);
+  });
+
+  describe('tests with firebase todos', () => {
+    var testTodoRef;
+
+    beforeEach((done) => {
+      var todosRef = firebaseRef.child('todos');
+      todosRef.remove().then(() => {
+        testTodoRef = firebaseRef.child('todos').push();
+
+        return testTodoRef.set({
+          text : 'something ',
+          completed :false,
+          createdAt : 233
+        })
+      })
+      .then(() => done())
+      .catch(done());
+;
+    });
+
+    afterEach((done) => {
+      testTodoRef.remove().then(() => done());
+    });
   });
 });
