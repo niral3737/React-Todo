@@ -31,15 +31,22 @@ describe('Reducers', () => {
 
   describe('todosReducer', () => {
     it('should add new todo', () => {
+      var todo = {
+        id : 1,
+        text : 'any',
+        completed : false,
+        completedAt : undefined,
+        createdAt : 123
+      };
       var action = {
         type : 'ADD_TODO',
-        text : 'Walk dog'
+        todo
       };
 
       var res = reducers.todosReducer(deepFreeze([]), deepFreeze(action));
 
       expect(res.length).toBe(1);
-      expect(res[0].text).toEqual(action.text);
+      expect(res[0].text).toEqual(action.todo.text);
     });
 
     it('should add existing todos', () => {
